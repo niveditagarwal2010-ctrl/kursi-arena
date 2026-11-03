@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KURSI ARENA</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background:
+        linear-gradient(rgba(10, 7, 4, 0.48), rgba(8, 5, 3, 0.78)),
+        url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1920&q=90")
+        center center / cover no-repeat fixed;
+    overflow: hidden;
+}
+
+.arena {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 25px;
+}
+
+.arena::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+}
+
+.tagline {
+    color: #e9bd78;
+    letter-spacing: 7px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+h1 {
+    font-size: clamp(48px, 9vw, 100px);
+    letter-spacing: 8px;
+    color: #ffe0a6;
+    text-shadow: 0 0 15px #e4a34b, 0 0 40px #c47b32;
+    z-index: 1;
+}
+
+.subtitle {
+    color: #f0dfc9;
+    letter-spacing: 4px;
+    margin-top: 12px;
+    margin-bottom: 45px;
+    z-index: 1;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(320px, 90vw);
+    z-index: 2;
+}
+
+button {
+    padding: 15px;
+    border: 1px solid #d6a45f;
+    background: linear-gradient(90deg, #2b1b0f, #774c23, #2b1b0f);
+    color: white;
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #e0ad63;
+    color: #160e08;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #e0ad6377;
+}
+
+.panel {
+    display: none;
+    z-index: 2;
+    max-width: 90vw;
+}
+
+.panel h2 {
+    color: #ffe0a6;
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #d18a36;
+}
+
+.panel button {
+    margin: 7px;
+}
+
+.panel p {
+    margin: 12px;
+    color: #f1e2d0;
+    letter-spacing: 1px;
+}
+
+.back {
+    background: #292019;
+    border-color: #888;
+}
+
+.footer {
+    position: absolute;
+    bottom: 18px;
+    color: #d6bd9c;
+    font-size: 11px;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+</style>
+</head>
+
+<body>
+<div class="arena">
+
+    <div class="tagline">THE HOUSE OF POWER</div>
+    <h1>KURSI ARENA</h1>
+    <div class="subtitle">ENTER THE PARLIAMENT BATTLE</div>
+
+    <div class="menu" id="mainMenu">
+        <button onclick="showPanel('modePanel')">PLAY</button>
+        <button onclick="showPanel('charactersPanel')">CHARACTERS</button>
+        <button onclick="showPanel('settingsPanel')">SETTINGS</button>
+        <button onclick="showPanel('howPanel')">HOW TO PLAY</button>
+        <button onclick="showPanel('aboutPanel')">ABOUT GAME</button>
+    </div>
+
+    <div class="panel" id="modePanel">
+        <h2>SELECT GAME MODE</h2>
+        <button onclick="alert('Player vs Computer mode coming soon!')">PLAYER VS COMPUTER</button>
+        <button onclick="alert('Two Player mode coming soon!')">TWO PLAYER LOCAL</button>
+        <button class="back" onclick="goBack()">BACK</button>
+    </div>
+
+    <div class="panel" id="charactersPanel">
+        <h2>FIGHTER ROSTER</h2>
+        <p>26 FICTIONAL FIGHTERS</p>
+        <button onclick="alert('Character selection coming soon!')">VIEW CHARACTERS</button>
+        <button class="back" onclick="goBack()">BACK</button>
+    </div>
+
+    <div class="panel" id="settingsPanel">
+        <h2>SETTINGS</h2>
+        <p>Music • Sound • Graphics • Controls</p>
+        <button class="back" onclick="goBack()">BACK</button>
+    </div>
+
+    <div class="panel" id="howPanel">
+        <h2>HOW TO PLAY</h2>
+        <p>W A S D — MOVE</p>
+        <p>SPACE — JUMP</p>
+        <p>SHIFT — DODGE</p>
+        <p>J / K — PUNCH</p>
+        <p>U / I — KICK</p>
+        <p>L — SPECIAL ATTACK</p>
+        <button class="back" onclick="goBack()">BACK</button>
+    </div>
+
+    <div class="panel" id="aboutPanel">
+        <h2>ABOUT KURSI ARENA</h2>
+        <p>A FICTIONAL PARLIAMENT-THEMED ARCADE FIGHTING GAME.</p>
+        <button class="back" onclick="goBack()">BACK</button>
+    </div>
+
+    <div class="footer">A FICTIONAL ARCADE EXPERIENCE</div>
+</div>
+
+<script>
+function showPanel(id) {
+    document.getElementById("mainMenu").style.display = "none";
+
+    document.querySelectorAll(".panel").forEach(panel => {
+        panel.style.display = "none";
+    });
+
+    document.getElementById(id).style.display = "block";
+}
+
+function goBack() {
+    document.querySelectorAll(".panel").forEach(panel => {
+        panel.style.display = "none";
+    });
+
+    document.getElementById("mainMenu").style.display = "flex";
+}
+</script>
+
+</body>
+</html>
